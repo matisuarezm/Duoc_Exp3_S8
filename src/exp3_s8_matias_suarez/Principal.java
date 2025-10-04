@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Principal {
 
     static String nombreTeatro = "TEATRO MORO";
-    static int totalEntradas = 50;
+    static int totalEntradas = 60;
     
     static DatosVenta[] ventasArreglo = new DatosVenta[totalEntradas];
     static Asientos[] asientosArreglo = new Asientos[totalEntradas];

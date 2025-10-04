@@ -17,6 +17,19 @@ public class Asientos {
      public static String[] ubicacionesDisponibles(){
         return new String[]{"vip","platea","balcon"};
     }
+     
+    //Asignar asientos segun el tipo de asientos
+    private String asignarUbicacion(int numeroAsiento){
+        if (numeroAsiento >= 1 && numeroAsiento <= 20) {
+            return "vip"; 
+        }else if (numeroAsiento >=21 && numeroAsiento <=40 ) {
+            return "platea";
+        }else if(numeroAsiento >=41 && numeroAsiento <=60){
+            return "balcon";
+        }else {
+            return "Desconocido";
+        }
+    }
     
     public static boolean ubicacionValida(String ubicacion){
         for (String laUbicacion : ubicacionesDisponibles()) {
@@ -33,18 +46,7 @@ public class Asientos {
             }
     }
     
-    private String asignarUbicacion(int numeroAsiento){
-        if (numeroAsiento >= 1 && numeroAsiento <= 10) {
-            return "vip"; 
-        }else if (numeroAsiento >=11 && numeroAsiento <=30 ) {
-            return "platea";
-        }else if(numeroAsiento >=31 && numeroAsiento <=50){
-            return "balcon";
-        }else {
-            return "Desconocido";
-        }
-    }
-    
+    //Getter 6 Setter - toString
     public boolean isEstadoAsiento() {
         return estadoAsiento;
     }

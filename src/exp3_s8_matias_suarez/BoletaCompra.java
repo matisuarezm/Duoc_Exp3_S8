@@ -7,12 +7,16 @@ import static exp3_s8_matias_suarez.Principal.nombreTeatro;
  * @author msuarez
  */
 public class BoletaCompra {
+    
     public static void ImprimirBoleta(DatosVenta[] ventasArreglo, int indiceVentas){
+        
+        //Verificamos que exitan ventas antes de imprimir la boleta
         if (indiceVentas == 0) {
             System.out.println("No existen ventas registradas");
             return;
         }
         
+        //buscamos el nombre del ulitmo cliente que compro para imprimir la cantidad de entradas comprada
         Clientes clienteUltimaVenta = ventasArreglo[indiceVentas - 1].nombreCliente; 
         
         System.out.println("\n------------------------------------------");
@@ -24,7 +28,7 @@ public class BoletaCompra {
         
         double totalFinal = 0;
         
-        //recorremos DatosVenta y chequeamos todas las del ultimo cliente = mismo nombre
+        //recorremos DatosVenta y chequeamos todas las compras del ultimo cliente = mismo nombre
         for (int i = 0; i < indiceVentas; i++) {
             DatosVenta ventas = ventasArreglo[i];
             if (ventas.nombreCliente == clienteUltimaVenta) {
