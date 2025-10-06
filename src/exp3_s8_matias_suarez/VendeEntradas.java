@@ -9,10 +9,10 @@ import java.util.Scanner;
  */
 public class VendeEntradas {
      
-    private DatosVenta[] ventasArreglo;
-    private Asientos[] asientosArreglo;
-    private Clientes[] clientesArreglo;
-    private int totalEntradas;
+    private DatosVenta[] ventasArreglo; //Guardar ventas realizadas
+    private Asientos[] asientosArreglo; //Guardar asientos y estado (libre | ocupado)
+    private Clientes[] clientesArreglo; //Guarda los clientes que compran
+    private int totalEntradas; 
     
     private int indiceVentas;
     private int indiceClientes;
@@ -32,7 +32,19 @@ public class VendeEntradas {
         for (int i = 0; i < totalEntradas; i++) {
             asientosArreglo[i] = new Asientos(i + 1, true);
         }
-    }    
+    }
+
+    public int getIndiceVentas() {
+        return indiceVentas;
+    }
+    
+    public DatosVenta[] getVentasArreglo(){
+        return ventasArreglo;
+    }
+    
+    public Asientos[] getAsientosArreglo(){
+        return asientosArreglo;
+    }
      
     public void VenderEntradas(Scanner input){
         if (indiceVentas >= totalEntradas) {
@@ -79,6 +91,9 @@ public class VendeEntradas {
             return;
         }
         
+        //Mostramos los asientos segun la ubicacion ingresada
+        mostrarAsientos(ubicacion);
+        
         //Consultamos la cantidad de entradas a comprar
         int cantidadEntradas = 0;
         while (true) {
@@ -97,9 +112,6 @@ public class VendeEntradas {
                 continue;
             }
         }
-        
-        //Mostramos los asientos por ubicacion
-        mostrarAsientos(ubicacion);
         
         //Seleccionamos los asientos a comprar y guardamos en una lista las compras para dar los totales
         List<DatosVenta> ventaParcial = new ArrayList<>(); 
@@ -141,9 +153,11 @@ public class VendeEntradas {
                     
                     totalParcial += precioFinal;
 
+                    System.out.println("\n------------------------------------------");
                     System.out.println("Asiento registrado exitosamente.");
                     System.out.printf("Asiento asignado: %d\n", asientoNumero);
-                    System.out.printf("Total a cancelar por asiento: $%.2f\n\n", precioFinal);
+                    System.out.printf("Total a cancelar por asiento: $%.2f", precioFinal);
+                    System.out.println("\n------------------------------------------\n");
 
                     break;
                 } catch (Exception e) {
@@ -155,7 +169,7 @@ public class VendeEntradas {
         
         //Agregamos los datos de compra al arreglo principal DatosVenta
         for (DatosVenta venta : ventaParcial) {
-            venta.idVenta = "IDV" + (indiceVentas +1);
+            venta.setIdVenta("IDV" + (indiceVentas + 1));
             ventasArreglo[indiceVentas++] = venta;
         }
         
@@ -177,12 +191,5 @@ public class VendeEntradas {
             }
         }
         System.out.println();
-    }
-
-    public int getIndiceVentas() {
-        return indiceVentas;
-    }
-    
-    
-    
+    }    
 }
