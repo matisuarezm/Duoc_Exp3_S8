@@ -65,7 +65,7 @@ public class VendeEntradas {
         String ubicacion = input.nextLine().trim().toLowerCase();
 
         if (!Asientos.ubicacionValida(ubicacion)) {
-            System.out.println("Ubicacion ingresada no es válida.");
+            System.err.println("Ubicacion ingresada no es valida.");
             return;
         }
         
@@ -74,7 +74,7 @@ public class VendeEntradas {
         String tipoClienteUsuario = input.nextLine().trim().toLowerCase();
         
         if (!Descuentos.TipoDescuentoValido(tipoClienteUsuario)) {
-            System.out.println("Tipo de cliente ingresado no es Válido, se asumirá general");
+            System.err.println("Tipo de cliente ingresado no es valido, se asumira general");
             tipoClienteUsuario = "general";
         }
         
@@ -87,7 +87,7 @@ public class VendeEntradas {
         }
         
         if (asientosDisponible == 0) {
-            System.out.println("No hay asientos disponibles.");
+            System.err.println("No hay asientos disponibles.");
             return;
         }
         
@@ -104,10 +104,10 @@ public class VendeEntradas {
                 if (cantidadEntradas > 0 && cantidadEntradas <= asientosDisponible) {
                     break;
                 } else {
-                    System.out.println("Cantidad inválida. Intente de nuevo.");
+                    System.err.println("Cantidad invalida. Intente de nuevo.");
                 }
             } catch (Exception e) {
-                System.out.println("Entrada inválida. Intente de nuevo.");
+                System.err.println("Entrada invalida. Intente de nuevo.");
                 input.nextLine();
                 continue;
             }
@@ -125,16 +125,16 @@ public class VendeEntradas {
                     asientoNumero = input.nextInt();
                     input.nextLine();
                     if (asientoNumero < 1 || asientoNumero > totalEntradas) {
-                        System.out.println("Número de asiento inválido. Intente de nuevo.");
+                        System.err.println("Numero de asiento invalido. Intente de nuevo.");
                         continue;
                     }
                     Asientos asientoElegido = asientosArreglo[asientoNumero - 1];
                     if (!asientoElegido.isEstadoAsiento()) {
-                        System.out.println("Asiento no disponible. Intente de nuevo.");
+                        System.err.println("Asiento no disponible. Intente de nuevo.");
                         continue;
                     }
                     if (!asientoElegido.getUbicacion().equalsIgnoreCase(ubicacion)) {
-                        System.out.println("El asiento no corresponde a la ubicación seleccionada. Intente de nuevo.");
+                        System.err.println("El asiento no corresponde a la ubicación seleccionada. Intente de nuevo.");
                         continue;
                     }
                     // Registrar la venta
@@ -143,7 +143,7 @@ public class VendeEntradas {
                     double descuentoAplicado = precioBase * porcentajeDescuento;
                     double precioFinal = precioBase - descuentoAplicado;
 
-                    //Guardamos la venta en el arreglo parcial
+                    //Guardamos las ventas en el arreglo parcial
                     DatosVenta nuevaVenta = new DatosVenta("IDV" + (indiceVentas + 1), nuevoCliente, precioBase, descuentoAplicado, precioFinal, asientoNumero);
                     ventaParcial.add(nuevaVenta);
 
@@ -161,7 +161,7 @@ public class VendeEntradas {
 
                     break;
                 } catch (Exception e) {
-                    System.out.println("Entrada inválida. Intente de nuevo.");
+                    System.err.println("Entrada invalida. Intente de nuevo.");
                     input.nextLine();
                 }
             }
@@ -182,7 +182,7 @@ public class VendeEntradas {
         for (int i = 0; i < totalEntradas; i++) {
             Asientos asiento = asientosArreglo[i];
             if (asiento.getUbicacion().equalsIgnoreCase(ubicacion)) {
-                String estado = asiento.isEstadoAsiento() ? "[L]" : "[X]"; // L = Libre, X = Ocupado
+                String estado = asiento.isEstadoAsiento() ? "[L]" : "[X]"; 
                 System.out.printf("%3d %s  ", asiento.getNumeroAsiento(), estado);
                 contador++;
                 if (contador % 5 == 0) {

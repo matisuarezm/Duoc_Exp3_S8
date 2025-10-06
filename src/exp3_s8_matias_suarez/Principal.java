@@ -116,6 +116,6 @@ public class Principal {
             eventoSeleccionado = null;
         }
         
-    }
+    }//Fin seleccionar evento
 }
     

@@ -4,8 +4,8 @@ package exp3_s8_matias_suarez;
  * @author msuarez
  */
 public class Clientes {
-    String idCliente;
-    String nombreCliente;
+    private String idCliente;
+    private String nombreCliente;
     
     public Clientes(String idCliente, String nombreCLiente){
         this.idCliente = idCliente;

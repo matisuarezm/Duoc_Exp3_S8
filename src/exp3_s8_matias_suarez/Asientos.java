@@ -4,8 +4,8 @@ package exp3_s8_matias_suarez;
  * @author msuarez
  */
 public class Asientos {
-    int numeroAsiento;
-    boolean estadoAsiento;
+    private int numeroAsiento;
+    private boolean estadoAsiento;
     private String ubicacion;
     
     public Asientos(int numeroAsiento, boolean estadoAsiento){
